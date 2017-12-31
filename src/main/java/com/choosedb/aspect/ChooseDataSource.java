@@ -20,6 +20,7 @@ public class ChooseDataSource extends AbstractRoutingDataSource {
      * @return
      */
     protected Object determineCurrentLookupKey() {
+        System.out.println("---------调用的方法是："+DataSourceHandler.getDataSource()+"--------------------");
         return DataSourceHandler.getDataSource();
     }
 
@@ -30,6 +31,7 @@ public class ChooseDataSource extends AbstractRoutingDataSource {
             String[] types = map.get(key).split(",");
             for (String type : types) {
                 if (StringUtils.isNotBlank(type)) {
+//                    System.out.println("-----------数据库操作类型:"+type+"------------");
                     v.add(type);
                 }
             }

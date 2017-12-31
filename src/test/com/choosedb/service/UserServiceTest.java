@@ -3,6 +3,7 @@ package com.choosedb.service;
 import com.choosedb.mybatis.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -12,7 +13,7 @@ import javax.inject.Inject;
 @ContextConfiguration("classpath:root.xml")
 public class UserServiceTest {
 
-    @Inject
+    @Autowired
     private IUserService userService;
 
     @Test
@@ -24,8 +25,8 @@ public class UserServiceTest {
     @Test
     public void addUser() throws Exception {
         User user = new User();
-        user.setName("Dave");
-        user.setPassword("dave");
+        user.setName("Jhonner");
+        user.setPassword("Jhonner");
         userService.addUser(user);
     }
 

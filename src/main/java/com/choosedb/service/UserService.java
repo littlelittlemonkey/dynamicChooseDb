@@ -2,6 +2,8 @@ package com.choosedb.service;
 
 import com.choosedb.mybatis.model.User;
 import com.choosedb.mybatis.dao.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -9,10 +11,12 @@ import javax.inject.Named;
 /**
  *
  */
-@Named
+//@Named
+@Service
 public class UserService implements IUserService {
 
-    @Inject
+//    @Inject
+    @Autowired
     private UserMapper userMapper;
 
     public User selectUserById(int id) {

@@ -11,6 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 /**
+ * DataSourceAspect进行具体方法的AOP拦截
  * 切换数据源(不同方法调用不同数据源)
  */
 @Aspect
@@ -20,7 +21,7 @@ public class DataSourceAspect {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.xuliugen.choosedb.demo.mybatis.dao.*.*(..))")
+    @Pointcut("execution(* com.choosedb.mybatis.dao.*.*(..))")
     public void aspect() {
     }
 
@@ -31,11 +32,13 @@ public class DataSourceAspect {
     public void before(JoinPoint point) {
         String className = point.getTarget().getClass().getName();
         String method = point.getSignature().getName();
+        System.out.println("---------------数据库操作的方法:"+method+"----------------");
         logger.info(className + "." + method + "(" + StringUtils.join(point.getArgs(), ",") + ")");
         try {
             for (String key : ChooseDataSource.METHOD_TYPE_MAP.keySet()) {
                 for (String type : ChooseDataSource.METHOD_TYPE_MAP.get(key)) {
                     if (method.startsWith(type)) {
+                        System.out.println("---------将key:"+key+"放入DataSourceHandler-------------");
                         DataSourceHandler.putDataSource(key);
                     }
                 }

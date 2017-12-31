@@ -2,6 +2,7 @@ package com.choosedb.controller;
 
 import com.choosedb.mybatis.model.User;
 import com.choosedb.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,7 @@ import javax.inject.Inject;
 @RequestMapping(value = "/user", produces = {"application/json;charset=UTF-8"})
 public class UserController {
 
-    @Inject
+    @Autowired
     private IUserService userService;
 
     //http://localhost:8080/user/select.do
